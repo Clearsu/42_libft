@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_free2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jincpark <jincpark@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jincpark <jincpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 14:03:56 by jincpark          #+#    #+#             */
-/*   Updated: 2023/02/08 20:28:35 by jincpark         ###   ########.fr       */
+/*   Created: 2023/02/08 23:40:10 by jincpark          #+#    #+#             */
+/*   Updated: 2023/02/08 23:41:02 by jincpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_free2(void **ptr)
 {
-	t_list	*to_free;
+	size_t	i;
 
-	while (*lst != NULL)
-	{
-		del((*lst)->content);
-		to_free = *lst;
-		(*lst) = (*lst)->next;
-		free(to_free);
-	}
+	i = 0;
+	while (ptr[i])
+		free(ptr[i++]);
+	free(ptr);
 }

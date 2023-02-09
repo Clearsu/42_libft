@@ -6,13 +6,13 @@
 #    By: jincpark <jincpark@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 11:08:32 by jincpark          #+#    #+#              #
-#    Updated: 2022/11/14 17:21:06 by jincpark         ###   ########.fr        #
+#    Updated: 2023/02/08 23:41:39 by jincpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					= libft.a
 
-CC						= gcc
+CC						= cc
 
 FLAGS					= -Wall -Wextra -Werror -I.
 
@@ -30,13 +30,13 @@ SRCS					= ft_atoi.c ft_bzero.c ft_calloc.c \
 					  ft_toupper.c get_next_line.c \
 					  ft_lstsize.c ft_lstadd_back.c ft_lstadd_front.c \
 					  ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-					  ft_lstmap.c ft_lstnew.c
+					  ft_lstmap.c ft_lstnew.c ft_free2.c
 
 FT_PRINTF_DIR			= ft_printf
 FT_PRINTF_AR			= libftprintf.a
 
 %.o	:	%.c
-	$(CC) $(FLAGS) -c $^
+	@$(CC) $(FLAGS) -c $^
 
 OBJS					= $(SRCS:%.c=%.o)
 
@@ -44,17 +44,17 @@ $(NAME)		:	$(OBJS)
 			@make -C $(FT_PRINTF_DIR) 
 			@cp $(FT_PRINTF_DIR)/$(FT_PRINTF_AR) .
 			@mv $(FT_PRINTF_AR) $(NAME)
-			ar rc $(NAME) $(OBJS)
+			@ar rc $(NAME) $(OBJS)
 
 all	:	$(NAME)
 
 clean	:
 		@make clean -C $(FT_PRINTF_DIR)
-		rm -f $(OBJS)
+		@rm -f $(OBJS)
 
 fclean	:	clean
 		@rm -f $(FT_PRINTF_DIR)/$(FT_PRINTF_AR)
-		rm -f $(NAME)
+		@rm -f $(NAME)
 
 re	:	fclean all
 
